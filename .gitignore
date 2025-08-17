@@ -1,0 +1,13 @@
+src/__pycache__
+__pycache__
+model/__pycache__
+DFT
+DFT_solv
+data/data_product.csv
+src/test.py
+src/experiment.py
+model/hc.py
+model/kmeans.py
+model/dbscan.py
+model/pca.py
+outputs/*
