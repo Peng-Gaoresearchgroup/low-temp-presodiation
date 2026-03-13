@@ -11,3 +11,4 @@ model/kmeans.py
 model/dbscan.py
 model/pca.py
 outputs/*
+test.txt

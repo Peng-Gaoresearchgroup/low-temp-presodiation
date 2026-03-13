@@ -32,7 +32,18 @@ class RFC(RandomForestClassifier):
             self.Y_train=self.Y
             self.X_test=None
             self.Y_test=None
-
+    def _get_external_splited_dataset(self,X_train,Y_train,X_test,Y_test):
+        if self.oob_score==False:
+            self.X_train=X_train
+            self.Y_train=Y_train
+            self.X_test=X_test
+            self.Y_test=Y_test
+        else:
+            self.X_train=self.X
+            self.Y_train=self.Y
+            self.X_test=None
+            self.Y_test=None
+    
     def _lasoo(self,alpha,threshold):
         
         lasso = Lasso(alpha=alpha)  # alpha是正则化强度参数
@@ -77,6 +88,9 @@ class RFC(RandomForestClassifier):
         for attr, value in self.__dict__.items():
             if 'X' not in attr and 'Y'not in attr:
                 print(f"{attr}: {value}")
+    def _predict_proba_after_lasso(self,X):
+        X = X.drop(columns=self.col_rm)
+        return super().predict_proba(X=X)
     
 if __name__=='__main__':
     # rfc=RFC(X=1,Y=1,n_estimators=100,max_depth=1,max_features=7,random_state=2)
